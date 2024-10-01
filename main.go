@@ -7,6 +7,9 @@ import (
 )
 
 func main() {
+
+	// This is the remains of some of my testing!
+
 	//orgID := uuid.FromStringOrNil(folder.DefaultOrgID)
 
 	res := folder.GetAllFolders()
