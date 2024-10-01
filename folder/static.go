@@ -145,3 +145,13 @@ func WriteSampleData(data interface{}) {
 		panic(err)
 	}
 }
+
+// Helper function to check if the list of folders contains a folder with a given name, returns that folder if it exists
+func containsFolder(folders []Folder, name string) (*Folder) {
+	for _, folder := range folders {
+		if folder.Name == name {
+			return &folder
+		}
+	}
+	return nil
+}

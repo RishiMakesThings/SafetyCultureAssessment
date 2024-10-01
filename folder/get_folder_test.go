@@ -33,7 +33,7 @@ func Test_folder_GetAllFolders(t *testing.T) {
 
 func Test_folder_GetFoldersByOrgID(t *testing.T) {
 	sampleData := folder.GetSampleData()
-	defaultOrgId := uuid.FromStringOrNil(folder.DefaultOrgID)
+	defaultOrgID := uuid.FromStringOrNil(folder.DefaultOrgID)
 
 	t.Parallel()
 	tests := [...]struct {
@@ -44,7 +44,7 @@ func Test_folder_GetFoldersByOrgID(t *testing.T) {
 	}{
 		{
 			testName:  "Folders with a matching orgID",
-			orgID: defaultOrgId,
+			orgID: defaultOrgID,
 			folders: sampleData,
 			want: sampleData[79:220], // items 79-220 are all the same folders that have the default orgID
 		},
@@ -84,7 +84,7 @@ func Test_folder_GetAllChildFolders(t *testing.T) {
 			givenFolder: "noble-vixen",
 			folders: sampleData,
 			wantFolders: []folder.Folder{},
-			wantError: errors.New("invalid orgID, cannot be nil UUID"), 
+			wantError: errors.New("Error: Invalid orgID, cannot be nil UUID"), 
 		},
 		{
 			testName:  "Error: folder does not exist",
@@ -92,7 +92,7 @@ func Test_folder_GetAllChildFolders(t *testing.T) {
 			givenFolder: "not-in-sample-data",
 			folders: sampleData,
 			wantFolders: []folder.Folder{},
-			wantError: errors.New("Folder does not exist"), 
+			wantError: errors.New("Error: Folder does not exist"), 
 		},
 		{
 			testName:  "Error: folder exists, under a diff orgID",
@@ -100,7 +100,7 @@ func Test_folder_GetAllChildFolders(t *testing.T) {
 			givenFolder: "noble-vixen",
 			folders: sampleData,
 			wantFolders: []folder.Folder{},
-			wantError: errors.New("Folder does not exist in the specified organization"), 
+			wantError: errors.New("Error: Folder does not exist in the specified organization"), 
 		},
 		{
 			testName:  "Root folder with multiple kids",

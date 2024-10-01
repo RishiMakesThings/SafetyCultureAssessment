@@ -4,24 +4,24 @@ import (
 	"fmt"
 
 	"github.com/georgechieng-sc/interns-2022/folder"
-	"github.com/gofrs/uuid"
 )
 
 func main() {
-	orgID := uuid.FromStringOrNil(folder.DefaultOrgID)
+	//orgID := uuid.FromStringOrNil(folder.DefaultOrgID)
 
 	res := folder.GetAllFolders()
 
 	// example usage
-	folderDriver := folder.NewDriver(res)
-	childFolders, error := folderDriver.GetAllChildFolders(orgID, "magnetic-sinister-six")
+	//folderDriver := folder.NewDriver(res[78:90])
+	//childFolders, error := folderDriver.GetAllChildFolders(orgID, "magnetic-sinister-six")
 
-	folder.PrettyPrint(res[78:221])
-	fmt.Printf("\n Folders for orgID: %s\n", orgID)
+	fmt.Printf("\n Folders for Child Magnetic Sinister Six:\n")
+	folder.PrettyPrint(res[78:90])
 
-	if error != nil {
-		fmt.Print(error, "\n")
-	} else {
-		folder.PrettyPrint(childFolders)
-	}
+	fmt.Printf("\n After Move: \n")
+
+	childDriver := folder.NewDriver(res[78:90])
+	movedFolders, error := childDriver.MoveFolder("magnetic-sinister-six", "hip-stingray")
+	folder.PrettyPrint(movedFolders)
+	fmt.Print(error, "\n")
 }
